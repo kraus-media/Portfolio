@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOHANN OSKAR KRAUS</title>
+    <style>
+        :root {
+            --text-main: #111;
+            --bg-main: #f4f4f4;
+            --accent: #555;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            cursor: default;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem 3rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 100;
+            mix-blend-mode: difference;
+            color: #fff;
+            /* Inverted due to mix-blend-mode */
+        }
+
+        .logo,
+        .nav a {
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: inherit;
+            font-size: 1.2rem;
+        }
+
+        /* Project List */
+        .project-list {
+            padding-top: 15vh;
+            padding-bottom: 10vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: baseline;
+            padding: 1.5rem 3rem;
+            text-decoration: none;
+            color: var(--text-main);
+            border-bottom: 1px solid #ddd;
+            position: relative;
+            transition: all 0.2s ease;
+            z-index: 10;
+            cursor: none;
+            /* Hide default cursor to rely on follower or nothing */
+        }
+
+        .project-item:first-child {
+            border-top: 1px solid #ddd;
+        }
+
+        .project-year {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            width: 80px;
+            flex-shrink: 0;
+        }
+
+        .project-info {
+            display: flex;
+            align-items: baseline;
+            width: 100%;
+        }
+
+        .project-title {
+            margin: 0;
+            font-size: 4rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            flex-grow: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .project-cat {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+        }
+
+        /* Hover States */
+        .project-item:hover .project-title {
+            transform: translateX(20px);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .project-item:hover .project-cat {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .project-item:hover {
+            background-color: #fff;
+        }
+
+        /* Cursor Follower (The detailed preview) */
+        .cursor-follower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 200px;
+            background-color: transparent;
+            background-size: cover;
+            background-position: center;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: opacity 0.2s ease, transform 0.1s linear;
+            /* Linear strict movement, ease opacity */
+            mix-blend-mode: normal;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .cursor-follower.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .header {
+                padding: 1.5rem;
+            }
+
+            .project-item {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
+    <header class="header">
+        <a href="#" class="logo">JOHANN OSKAR KRAUS</a>
+        <nav class="nav">
+            <a href="mailto:contact@johann.kraus">KONTAKT</a>
+        </nav>
+    </header>
+
+    <main class="project-list">
+        <!-- Project 1 -->
+        <a href="#" class="project-item" data-image="https://picsum.photos/600/400?random=1" data-color="#ff4d4d">
+            <span class="project-year">2025</span>
+            <div class="project-info">
+                <h2 class="project-title">INTERACTION WALK</h2>
+                <span class="project-cat">Web Design</span>
+            </div>
+        </a>
+
+        <!-- Project 2 -->
+        <a href="#" class="project-item" data-image="https://picsum.photos/600/400?random=2" data-color="#4d79ff">
+            <span class="project-year">2025</span>
+            <div class="project-info">
+                <h2 class="project-title">NEURAL ECHOES</h2>
+                <span class="project-cat">Creative Coding</span>
+            </div>
+        </a>
+
+        <!-- Project 3 -->
+        <a href="#" class="project-item" data-image="https://picsum.photos/600/400?random=3" data-color="#ffb347">
+            <span class="project-year">2024</span>
+            <div class="project-info">
+                <h2 class="project-title">SILENT SPACES</h2>
+                <span class="project-cat">Installation</span>
+            </div>
+        </a>
+
+        <!-- Project 4 -->
+        <a href="#" class="project-item" data-image="https://picsum.photos/600/400?random=4" data-color="#b347ff">
+            <span class="project-year">2024</span>
+            <div class="project-info">
+                <h2 class="project-title">TYPE EXPERIMENTS</h2>
+                <span class="project-cat">Typography</span>
+            </div>
+        </a>
+
+        <!-- Project 5 -->
+        <a href="#" class="project-item" data-image="https://picsum.photos/600/400?random=5" data-color="#47ffb3">
+            <span class="project-year">2023</span>
+            <div class="project-info">
+                <h2 class="project-title">DIGITAL DECAY</h2>
+                <span class="project-cat">Video Art</span>
+            </div>
+        </a>
+    </main>
+
+    <script>
+        const follower = document.getElementById('cursor-follower');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // Track mouse position smoothly
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Update follower position
+            follower.style.left = mouseX + 'px';
+            follower.style.top = mouseY + 'px';
+        });
+
+        projectItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                // Get data attributes
+                const imageUrl = item.getAttribute('data-image');
+
+                // Update follower content
+                follower.style.backgroundImage = `url(${imageUrl})`;
+                follower.classList.add('active');
+            });
+
+            item.addEventListener('mouseleave', () => {
+                follower.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
